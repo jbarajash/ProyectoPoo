@@ -1,0 +1,122 @@
+@startuml
+
+' Clases base
+class Mision {
+    - destino: String
+    - recursos: List<Recurso>
+    - astronautas: List<Astronauta>
+    - tareas: List<Tarea>
+    - inconvenientes: List<Inconveniente>
+    + Mision(String)
+    + getDestino()
+    + getRecursos(): List<Recurso>
+    + getAstronautas(): List<Astronauta>
+    + getTareas(): List<Tarea>
+    + getInconvenientes(): List<Inconveniente>
+    + iniciarMision(): String
+    + asignarTarea(Tarea): void
+    + resolverInconveniente(Inconveniente): void
+}
+class Inconveniente {
+    - nombre: String
+    - gravedad: int
+    + Inconveniente(String, int)
+    + afectarMision(Mision): void
+}
+
+class Enfermedad extends Inconveniente {
+    - astronauta: Astronauta
+    + Enfermedad(String, int, Astronauta)
+    + afectarMision(Mision): void
+}
+
+class Fuego extends Inconveniente {
+    - astronauta: Astronauta
+    + Enfermedad(String, int, Astronauta)
+    + afectarMision(Mision): void
+}
+class FugaOxigeno extends Inconveniente {
+    - astronauta: Astronauta
+    + Enfermedad(String, int, Astronauta)
+    + afectarMision(Mision): void
+}
+class ImpactoMeteorito extends Inconveniente {
+    - astronauta: Astronauta
+    + Enfermedad(String, int, Astronauta)
+    + afectarMision(Mision): void
+}
+class TormentaSolar extends Inconveniente {
+    - astronauta: Astronauta
+    + Enfermedad(String, int, Astronauta)
+    + afectarMision(Mision): void
+}
+
+class Recurso {
+    - tipo: String
+    - cantidad: double
+    + Recurso(String, double)
+    + getTipo(): String
+    + getCantidad(): double
+    + consumir(double): void
+    + reabastecer(double): void
+}
+
+class Comida {
+    - cantidad: double
+    + Comida(double)
+    + consumir(double): void
+    + reabastecer(double): void
+}
+
+Recurso <|-- Comida
+
+class Astronauta {
+    - nombre: String
+    - rol: String
+    - salud: int
+    - estado: String
+    - cedula: String
+    + Astronauta(String, String, int, String)
+    + getNombre(): String
+    + getRol(): String
+    + getSalud(): int
+    + getEstado(): String
+    + getCedula(): String
+    + enfermar(int): void
+    + realizarTarea(Tarea): void
+    + reportarEstado(): String
+}
+
+class Tarea {
+    - descripcion: String
+    - requiereRecursos: boolean
+    - completada: boolean
+    + Tarea(String)
+    + Tarea(String, boolean)
+    + isRequiereRecursos(): boolean
+    + isCompletada(): boolean
+    + ejecutar(Astronauta): void
+}
+class AnalizarDatos extends Tarea{
++AnalizarDatos(String)
+}
+class RepararModulo extends Tarea{
++RepararModulo(String)
+}
+class TomarFotos extends Tarea{
++TomarFotos(String)
+}
+class TomarMuestras extends Tarea{
++TomarMuestras(String)
+}
+
+' Relaciones
+Mision "1" *-- "0..*" Recurso
+Mision "1" *-- "0..*" Astronauta
+Mision "1" *-- "0..*" Tarea
+Mision "1" *-- "0..*" Inconveniente
+Astronauta "1" --> "0..*" Tarea : realiza
+Tarea --> Recurso : requiere
+Enfermedad --> Astronauta : afecta
+Inconveniente --> Mision : afecta
+@enduml

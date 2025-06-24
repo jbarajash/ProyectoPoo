@@ -1,2 +1,3 @@
 # ProyectoPoo
-Readme de mi mproyecto
+Grupo 1
+Mision espacial 

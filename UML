@@ -1,75 +1,5 @@
 @startuml
-
-' Clases base
-class Mision {
-    - destino: String
-    - recursos: List<Recurso>
-    - astronautas: List<Astronauta>
-    - tareas: List<Tarea>
-    - inconvenientes: List<Inconveniente>
-    + Mision(String)
-    + getDestino()
-    + getRecursos(): List<Recurso>
-    + getAstronautas(): List<Astronauta>
-    + getTareas(): List<Tarea>
-    + getInconvenientes(): List<Inconveniente>
-    + iniciarMision(): String
-    + asignarTarea(Tarea): void
-    + resolverInconveniente(Inconveniente): void
-}
-class Inconveniente {
-    - nombre: String
-    - gravedad: int
-    + Inconveniente(String, int)
-    + afectarMision(Mision): void
-}
-
-class Enfermedad extends Inconveniente {
-    - astronauta: Astronauta
-    + Enfermedad(String, int, Astronauta)
-    + afectarMision(Mision): void
-}
-
-class Fuego extends Inconveniente {
-    - astronauta: Astronauta
-    + Enfermedad(String, int, Astronauta)
-    + afectarMision(Mision): void
-}
-class FugaOxigeno extends Inconveniente {
-    - astronauta: Astronauta
-    + Enfermedad(String, int, Astronauta)
-    + afectarMision(Mision): void
-}
-class ImpactoMeteorito extends Inconveniente {
-    - astronauta: Astronauta
-    + Enfermedad(String, int, Astronauta)
-    + afectarMision(Mision): void
-}
-class TormentaSolar extends Inconveniente {
-    - astronauta: Astronauta
-    + Enfermedad(String, int, Astronauta)
-    + afectarMision(Mision): void
-}
-
-class Recurso {
-    - tipo: String
-    - cantidad: double
-    + Recurso(String, double)
-    + getTipo(): String
-    + getCantidad(): double
-    + consumir(double): void
-    + reabastecer(double): void
-}
-
-class Comida {
-    - cantidad: double
-    + Comida(double)
-    + consumir(double): void
-    + reabastecer(double): void
-}
-
-Recurso <|-- Comida
-
+' ===================== ASTRONAUTAS =====================
 class Astronauta {
     - nombre: String
     - rol: String
@@ -78,45 +8,129 @@ class Astronauta {
     - cedula: String
     + Astronauta(String, String, int, String)
     + getNombre(): String
+    + setNombre(String): void
     + getRol(): String
+    + setRol(String): void
     + getSalud(): int
+    + setSalud(int): void
     + getEstado(): String
+    + setEstado(String): void
     + getCedula(): String
+    + setCedula(String): void
     + enfermar(int): void
+    + ganarSalud(int): void
+    + estaMuerto(): boolean
     + realizarTarea(Tarea): void
     + reportarEstado(): String
+    + puedeEjecutar(Tarea): boolean
 }
 
+class Medico extends Astronauta
+class Ingeniero extends Astronauta
+class Cientifico extends Astronauta
+class Piloto extends Astronauta
+
+' ===================== TAREAS =====================
 class Tarea {
     - descripcion: String
     - requiereRecursos: boolean
     - completada: boolean
     + Tarea(String)
     + Tarea(String, boolean)
+    + getDescripcion(): String
+    + setDescripcion(String): void
     + isRequiereRecursos(): boolean
+    + setRequiereRecursos(boolean): void
     + isCompletada(): boolean
+    + setCompletada(boolean): void
     + ejecutar(Astronauta): void
 }
-class AnalizarDatos extends Tarea{
-+AnalizarDatos(String)
+class PilotearNave extends Tarea
+class RepararNave extends Tarea
+class CurarEnfermos extends Tarea
+class TomarMuestras extends Tarea
+
+' ===================== RECURSOS =====================
+class Recurso {
+    - tipo: String
+    - cantidad: double
+    + Recurso(String, double)
+    + getTipo(): String
+    + setTipo(String): void
+    + getCantidad(): double
+    + setCantidad(double): void
+    + consumir(double): void
 }
-class RepararModulo extends Tarea{
-+RepararModulo(String)
+class Comida extends Recurso {
+    + Comida(double)
 }
-class TomarFotos extends Tarea{
-+TomarFotos(String)
-}
-class TomarMuestras extends Tarea{
-+TomarMuestras(String)
+class Combustible extends Recurso {
+    + Combustible(double)
 }
 
-' Relaciones
+' ===================== INCONVENIENTES =====================
+class Inconveniente {
+    - nombre: String
+    - gravedad: int
+    + Inconveniente(String, int)
+    + getNombre(): String
+    + setNombre(String): void
+    + getGravedad(): int
+    + setGravedad(int): void
+    + afectarMision(Mision): void
+}
+class Enfermedad extends Inconveniente {
+    - victima: Astronauta
+    + Enfermedad(String, int, Astronauta)
+    + getVictima(): Astronauta
+    + setVictima(Astronauta): void
+    + afectarMision(Mision): void
+    + contagiarOtros(Mision): void
+}
+class Fuego extends Inconveniente
+class FugaOxigeno extends Inconveniente
+class ImpactoMeteorito extends Inconveniente
+class TormentaSolar extends Inconveniente
+
+' ===================== MISION =====================
+class Mision {
+    - destino: String
+    - recursos: List<Recurso>
+    - tripulacion: List<Astronauta>
+    - tareas: List<Tarea>
+    - inconvenientes: List<Inconveniente>
+    - expulsados: List<Astronauta>
+    + Mision(String)
+    + getDestino(): String
+    + setDestino(String): void
+    + getRecursos(): List<Recurso>
+    + setRecursos(List<Recurso>): void
+    + getTripulacion(): List<Astronauta>
+    + setTripulacion(List<Astronauta>): void
+    + getTareas(): List<Tarea>
+    + setTareas(List<Tarea>): void
+    + getInconvenientes(): List<Inconveniente>
+    + setInconvenientes(List<Inconveniente>): void
+    + getExpulsados(): List<Astronauta>
+    + setExpulsados(List<Astronauta>): void
+    + iniciarMision(): String
+    + asignarTarea(Tarea): void
+    + resolverInconveniente(Inconveniente): void
+    + expulsarTripulante(Astronauta): void
+    + fueExpulsado(Astronauta): boolean
+}
+
+' ===================== RELACIONES =====================
+Astronauta --> "0..*" Tarea : realiza
+Tarea --> Recurso : requiere
 Mision "1" *-- "0..*" Recurso
-Mision "1" *-- "0..*" Astronauta
+Mision "1" *-- "0..*" Astronauta : tripulacion
 Mision "1" *-- "0..*" Tarea
 Mision "1" *-- "0..*" Inconveniente
-Astronauta "1" --> "0..*" Tarea : realiza
-Tarea --> Recurso : requiere
-Enfermedad --> Astronauta : afecta
 Inconveniente --> Mision : afecta
+Enfermedad --> Astronauta : afecta
+Astronauta <|-- Medico
+Astronauta <|-- Ingeniero
+Astronauta <|-- Cientifico
+Astronauta <|-- Piloto
 @enduml

@@ -1,0 +1,29 @@
+inicie el proceso de jugabilidad, e hice una version imprimible primitiva, la idea seria mostrar el texto en una interfas grafica y modificar el "ingrese enter" 
+por un boton para la version final del juego, tambien modificar la forma de eleccion, para que se "clickee" los astronautas que deseas añadir en vez de poner los
+numeros de cada astronauta
+
+modifique el tipo de datos que se usaban para añadir un poco de dificultad al juego, asi no podra llevar a todos los tipos de astronautas y todos los recursos 
+en una misma mision, y debera elegir dependiendo de las tareas que se le fueron asignadas de forma aleatoria a la hora de iniciar el juego
+
+agregue notas dentro del codigo para explicar la linea de pensamiento que lleve a la hora de desarrollar el proyecto, opte por la creacion de una nueva carpeta pues,
+despues de varios intentos fallidos de modificar los tipos de datos manteniendo la integridad del codigo desisti al final,segui la idea e intente replicar al maximo 
+la version anterior, aun hace falta implementar algunas cosas.
+
+porfavor si va a editar el codigo deje anotaciones de que se realizo y cuales son los pensamientos que lo llevaron a hacer esas acciones
+
+ProyectoFinal2 es el main
+
+omiti algunas tareas que se encontraban en el diagrama original, no con el afan de eliminarlas, si no de hacerlas propias de las clases, por ejemplo
+solo el piloto puede pilotear, puede ser una tarea tambien, solo hay que tomarse el tiempo de pensar bien como se solucionara eso
+
+es importante implementar un sistema de "dias"
+
+es necesario trabajar en la relacion de los inconvenientes con la mision a su vez con los astronautas
+
+hice algunas clases que estan virtualmente vacias, esto se debe a que ahora hay clases abstractas que no pueden ser instanciadas
+
+IMPORTANTE
+el diagrama UML de esta version aun no se ha actualizado, es importante rehacerlo antes de tratar de sacar mas versiones para conservar la misma linea de trabajo y 
+de pensamiento
+
+

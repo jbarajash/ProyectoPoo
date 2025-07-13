@@ -1,0 +1,18 @@
+=== Mision a Marte ===
+Misión hacia Marte iniciada
+La misión ahora está en órbita
+María no puede tomar muestras fuera del planeta
+La misión ahora está en el planeta
+María consumió comida
+María ejecutó Recolectar suelo marciano
+María consumió comida
+María ejecutó Fotografiar superficie marciana
+María alcanzó nivel 1
+Fuga de oxígeno consume 10 unidades
+Escudo reducido por la fuga de oxígeno
+Inconveniente 'Fuga en módulo' resuelto
+Juan empeora por enfermedad Gripe espacial
+Inconveniente 'Gripe espacial' resuelto
+Luis ha curado a Juan
+Puntaje: 911
+
